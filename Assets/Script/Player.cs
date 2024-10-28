@@ -6,6 +6,11 @@ public class Player : MonoBehaviour
 {
     private CharacterController controller;
     [SerializeField] private float velocidadMovimiento;
+    [SerializeField] private float factorGravedad;
+    [SerializeField] private float radioDeteccion;
+    [SerializeField] private Transform pies;
+    private Vector3 movimientoVertical;
+    [SerializeField] private LayerMask FloorCheck;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +34,21 @@ public class Player : MonoBehaviour
 
             controller.Move(movimiento * velocidadMovimiento * Time.deltaTime);
         }
-        
+        AplicarGravedad();
+        EnSuelo();
     }
+
+    private void AplicarGravedad()
+    {
+        movimientoVertical.y += factorGravedad * Time.deltaTime;
+        controller.Move(movimientoVertical * Time.deltaTime);
+
+    }
+    private bool EnSuelo()
+    {
+       bool resultado = Physics.CheckSphere(pies.position, radioDeteccion);
+        return resultado;
+    }
+
+
 }
