@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     private CharacterController controller;
     [SerializeField] private float velocidadMovimiento;
+    [SerializeField] private float alturaSalto;
     [SerializeField] private float factorGravedad;
     [SerializeField] private float radioDeteccion;
     [SerializeField] private Transform pies;
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -24,18 +26,35 @@ public class Player : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
 
         Vector2 input = new Vector2(h, v);
-            float angulo = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
 
-            transform.eulerAngles = new Vector3(0, angulo, 0);
+         transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
+
         if(input.magnitude > 0)
         {
+            float angulo = Mathf.Atan2(input.x, input.y) * Mathf.Rad2Deg + Camera.main.transform.eulerAngles.y;
 
             Vector3 movimiento = Quaternion.Euler(0, angulo, 0) * Vector3.forward;  
 
             controller.Move(movimiento * velocidadMovimiento * Time.deltaTime);
         }
         AplicarGravedad();
-        EnSuelo();
+
+        if(EnSuelo())
+        {
+            movimientoVertical.y = 0;
+            Saltar();
+        }
+    }
+    private void Saltar()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            movimientoVertical.y = Mathf.Sqrt(-2 * factorGravedad * alturaSalto);
+        }
+        
+    
+
     }
 
     private void AplicarGravedad()
@@ -48,6 +67,13 @@ public class Player : MonoBehaviour
     {
        bool resultado = Physics.CheckSphere(pies.position, radioDeteccion);
         return resultado;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(pies.position, radioDeteccion);
+
     }
 
 
