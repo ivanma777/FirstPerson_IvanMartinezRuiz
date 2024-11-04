@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private float vidas;
+
+    [Header("movimineto")]
     private CharacterController controller;
     [SerializeField] private float velocidadMovimiento;
     [SerializeField] private float alturaSalto;
     [SerializeField] private float factorGravedad;
     [SerializeField] private float radioDeteccion;
+
+    [Header("pies")]
     [SerializeField] private Transform pies;
     private Vector3 movimientoVertical;
     [SerializeField] private LayerMask FloorCheck;
@@ -76,5 +81,9 @@ public class Player : MonoBehaviour
 
     }
 
+    public void RecibirDanho(float danhoEnemigo)
+    {
+        vidas -= danhoEnemigo;
 
+    }
 }
