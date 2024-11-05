@@ -11,6 +11,7 @@ public class Enemigo : MonoBehaviour
     private Animator anim;
     private Player player;
     private bool ventanaAbierta;
+    private bool PuedoDanhar = true;
 
 
     [SerializeField]private float danhoEnemigo;
@@ -37,7 +38,7 @@ public class Enemigo : MonoBehaviour
     {
         Perseguir();
 
-        if (ventanaAbierta)
+        if (ventanaAbierta && PuedoDanhar)
         { 
             DetectarImpact();
         
@@ -55,14 +56,15 @@ public class Enemigo : MonoBehaviour
 
             }
 
-
+            PuedoDanhar = false;
         }
     }
 
     private void FinAtaque()
     {
         agent.isStopped = false;
-        anim.SetBool("attack", false);
+        anim.SetBool("Attack", false);
+        PuedoDanhar = true;
 
     }
     private void AbrirVentanaDeAtaque()
