@@ -63,7 +63,7 @@ public class Enemigo : MonoBehaviour
     private void FinAtaque()
     {
         agent.isStopped = false;
-        anim.SetBool("Attack", false);
+        anim.SetBool("attack", false);
         PuedoDanhar = true;
 
     }
@@ -81,7 +81,7 @@ public class Enemigo : MonoBehaviour
 
         agent.SetDestination(player.transform.position);
 
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             agent.isStopped = true;
             anim.SetBool("attack", true);
