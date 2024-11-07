@@ -22,6 +22,7 @@ public class Enemigo : MonoBehaviour
     [SerializeField] private float radioAttack;
     [SerializeField] private LayerMask Danable;
 
+    Rigidbody[] huesos;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -30,8 +31,11 @@ public class Enemigo : MonoBehaviour
 
         anim = GetComponent<Animator>();
 
-       
-        
+        huesos = GetComponentsInChildren<Rigidbody>();
+
+        CambiarEstadosHuesos(true);
+
+
     }
 
     // Update is called once per frame
@@ -44,10 +48,7 @@ public class Enemigo : MonoBehaviour
             DetectarImpact();
         
         }
-        if (vida == 0)
-        { 
-            Destroy(gameObject);
-        }
+       
 
     }
 
@@ -95,9 +96,23 @@ public class Enemigo : MonoBehaviour
         }
 
     }
-    public void RecibirDahno2(float danhoEnemigo)
+    private void CambiarEstadosHuesos(bool estado)
+    {
+        for (int i = 0; i < huesos.Length; i++)
+        {
+            huesos[i].isKinematic = true;
+        }
+
+    }
+    public void RecibirDahno(float danhoEnemigo)
     {
         vida -= danhoEnemigo;
+        if (vida == 0)
+        {
+            CambiarEstadosHuesos(false);
 
+
+
+        }
     }
 }

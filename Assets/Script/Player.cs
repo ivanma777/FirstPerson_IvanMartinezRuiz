@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -50,6 +51,8 @@ public class Player : MonoBehaviour
             movimientoVertical.y = 0;
             Saltar();
         }
+
+
     }
     private void Saltar()
     {
@@ -87,4 +90,6 @@ public class Player : MonoBehaviour
         vidas -= danhoEnemigo;
 
     }
+
+    
 }
