@@ -13,6 +13,7 @@ public class Enemigo : MonoBehaviour
     private bool ventanaAbierta;
     private bool PuedoDanhar = true;
 
+    private float vida = 10;
 
     [SerializeField]private float danhoEnemigo;
 
@@ -43,6 +44,11 @@ public class Enemigo : MonoBehaviour
             DetectarImpact();
         
         }
+        if (vida == 0)
+        { 
+            Destroy(gameObject);
+        }
+
     }
 
     private void DetectarImpact()
@@ -87,6 +93,11 @@ public class Enemigo : MonoBehaviour
             anim.SetBool("attack", true);
 
         }
+
+    }
+    public void RecibirDahno2(float danhoEnemigo)
+    {
+        vida -= danhoEnemigo;
 
     }
 }
