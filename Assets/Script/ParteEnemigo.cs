@@ -5,15 +5,16 @@ using UnityEngine;
 public class ParteEnemigo : MonoBehaviour
 {
     [SerializeField] private Enemigo mainScript;
+    [SerializeField] private float multiplicadorDanho;
     public void RecibirDahno(float danhoEnemigo)
     {
-        //vida -= danhoEnemigo;
-        //if (vida == 0)
-        //{
-        //    CambiarEstadosHuesos(false);
+        mainScript.Vida -= danhoEnemigo * multiplicadorDanho;
+        if (mainScript.Vida == 0)
+        {
+
+            mainScript.Morir();
 
 
-
-        //}
+        }
     }
 }

@@ -23,6 +23,9 @@ public class Enemigo : MonoBehaviour
     [SerializeField] private LayerMask Danable;
 
     Rigidbody[] huesos;
+
+    public float Vida { get => vida; set => vida = value; }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -104,6 +107,12 @@ public class Enemigo : MonoBehaviour
         }
 
     }
-   
+    public void Morir()
+    {
+        CambiarEstadosHuesos(false);
+        anim.enabled = false;
+        agent.enabled = false;
+
+    }
     
 }

@@ -608,6 +608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScript: {fileID: 1807622521}
+  multiplicadorDanho: 1
 --- !u!144 &451807554
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -717,6 +718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScript: {fileID: 1807622521}
+  multiplicadorDanho: 0.5
 --- !u!1 &681312457
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,6 +850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScript: {fileID: 1807622521}
+  multiplicadorDanho: 0.5
 --- !u!1 &915929919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1001,6 +1004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScript: {fileID: 1807622521}
+  multiplicadorDanho: 1
 --- !u!114 &1401705654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,6 +1018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScript: {fileID: 1807622521}
+  multiplicadorDanho: 1
 --- !u!144 &1433250810
 CharacterJoint:
   m_ObjectHideFlags: 0
@@ -1438,6 +1443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScript: {fileID: 1807622521}
+  multiplicadorDanho: 1
 --- !u!54 &1777085342
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1606,6 +1612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScript: {fileID: 1807622521}
+  multiplicadorDanho: 1
 --- !u!114 &1859541061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,6 +1626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScript: {fileID: 1807622521}
+  multiplicadorDanho: 4
 --- !u!114 &1982400312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1632,6 +1640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScript: {fileID: 1807622521}
+  multiplicadorDanho: 2
 --- !u!1 &2134943955
 GameObject:
   m_ObjectHideFlags: 0
@@ -3435,6 +3444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScript: {fileID: 1807622521}
+  multiplicadorDanho: 0.5
 --- !u!114 &2146936718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3448,6 +3458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainScript: {fileID: 1807622521}
+  multiplicadorDanho: 0.5
 --- !u!4 &543450651595292816 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: dd33a849f85a14a48b3297d9f38d00f5,
