@@ -104,15 +104,6 @@ public class Enemigo : MonoBehaviour
         }
 
     }
-    public void RecibirDahno(float danhoEnemigo)
-    {
-        vida -= danhoEnemigo;
-        if (vida == 0)
-        {
-            CambiarEstadosHuesos(false);
-
-
-
-        }
-    }
+   
+    
 }
