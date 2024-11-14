@@ -6,15 +6,34 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] GameObject enemigoPrefab;
     [SerializeField]private Transform[] puntosSpawn;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(enemigoPrefab, puntosSpawn[Random.Range(0, 8)].position, Quaternion.identity);
+        Spawnear();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+       
+
+    }
+
+    IEnumerator Spawnear()
+    {
+
+        while(true)
+        {
+            Instantiate(enemigoPrefab, puntosSpawn[Random.Range(0, puntosSpawn.Length)].position, Quaternion.identity);
+            yield return new WaitForSeconds(1);
+
+
+
+        }
+
+
     }
 }
