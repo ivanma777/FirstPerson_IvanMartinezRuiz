@@ -44,7 +44,11 @@ public class Enemigo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Perseguir();
+        if (agent.enabled)
+        {
+            Perseguir();
+            
+        }
 
         if (ventanaAbierta && PuedoDanhar)
         { 
