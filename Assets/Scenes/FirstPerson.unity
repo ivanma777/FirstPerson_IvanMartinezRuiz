@@ -960,11 +960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a714a11aa6b794398d82c38ce06a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armas:
-  - {fileID: 738659685}
-  - {fileID: 1597835436}
-  - {fileID: 2109011827}
-  - {fileID: 1440192660}
+  armas: []
 --- !u!1 &806745016
 GameObject:
   m_ObjectHideFlags: 3
@@ -6072,7 +6068,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a714a11aa6b794398d82c38ce06a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  armas: []
+  armas:
+  - {fileID: 738659685}
+  - {fileID: 1597835436}
+  - {fileID: 2109011827}
+  - {fileID: 1440192660}
 --- !u!1 &1387800436
 GameObject:
   m_ObjectHideFlags: 0
