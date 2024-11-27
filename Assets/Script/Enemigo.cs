@@ -99,10 +99,22 @@ public class Enemigo : MonoBehaviour
         {
             agent.isStopped = true;
             anim.SetBool("attack", true);
-
+            EnfocarObjetivo();
         }
 
     }
+
+    private void EnfocarObjetivo()
+    {
+        Vector3 direccionAObjectivo = (player.transform.position - transform.position).normalized;
+
+        direccionAObjectivo.y = 0;
+
+        Quaternion rotacionAObjetivo = Quaternion.LookRotation(direccionAObjectivo);
+
+        transform.rotation = rotacionAObjetivo;
+    }
+
     private void CambiarEstadosHuesos(bool estado)
     {
         for (int i = 0; i < huesos.Length; i++)
