@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -58,6 +59,7 @@ public class Player : MonoBehaviour
             controller.Move(movimiento * velocidadMovimiento * Time.deltaTime);
         }
         AplicarGravedad();
+        Correr();
 
 
         if (EnSuelo())
@@ -88,6 +90,21 @@ public class Player : MonoBehaviour
 
         //}
     }
+
+    private void Correr()
+    {
+       if (Input.GetKey(KeyCode.LeftShift))
+        {
+
+            velocidadMovimiento = 7.5f;
+        }
+       else
+        {
+            velocidadMovimiento = 5f;
+
+        }
+    }
+
     private void Saltar()
     {
 
