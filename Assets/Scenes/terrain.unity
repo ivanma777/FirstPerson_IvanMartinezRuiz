@@ -271,7 +271,7 @@ Transform:
   m_GameObject: {fileID: 395213801}
   serializedVersion: 2
   m_LocalRotation: {x: 0.22928329, y: 0.5563296, z: -0.0146954525, w: 0.79856795}
-  m_LocalPosition: {x: 383, y: 92.5, z: 205}
+  m_LocalPosition: {x: 383, y: 97.8, z: 205}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -977,6 +977,7 @@ GameObject:
   - component: {fileID: 2103350784}
   - component: {fileID: 2103350783}
   - component: {fileID: 2103350782}
+  - component: {fileID: 2103350785}
   m_Layer: 0
   m_Name: Box Volume
   m_TagString: Untagged
@@ -1037,6 +1038,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2103350785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103350781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 587d4968f7957f1498769dd73edb1b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidadAngular: 5
 --- !u!1 &2134943955
 GameObject:
   m_ObjectHideFlags: 0
