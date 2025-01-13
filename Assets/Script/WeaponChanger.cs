@@ -7,7 +7,14 @@ public class WeaponChanger : MonoBehaviour
 {
     [SerializeField] private GameObject[] armas;
 
+    [SerializeField] private ArmaSaliendo caja;
+
     private int indiceArmaActual;
+
+    private bool tope;
+    private bool tope2;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +45,9 @@ public class WeaponChanger : MonoBehaviour
         {
             indiceArma = armas.Length - 1;
 
+
         }
-        else if(indiceArmaActual > armas.Length)
+        else if(indiceArmaActual >= armas.Length)
         {
             indiceArma = 0;
 
@@ -82,17 +90,43 @@ public class WeaponChanger : MonoBehaviour
 
         float scroolWheel = Input.GetAxis("Mouse ScrollWheel");
 
-        if(scroolWheel > 0)
-        {
-            CambiarArma(indiceArmaActual + 1);
-
-        }
-        else if(scroolWheel < 0)
+        if(scroolWheel > 0 && !tope)
         {
 
-            CambiarArma(indiceArmaActual - 1);
+            CambiarArma(1);
+            tope = true;
+            tope2 = false;
+
+        }
+        else if(scroolWheel < 0 && !tope2)
+        {
+
+            CambiarArma(/*indiceArmaActual - 1*/0);
+            tope2 = true;
+            tope = false;
+
         }
 
+
+
+    }
+
+    public void CambiarLista()
+    {
+        //int seleccionado = indiceArmaActual;
+        //indiceArmaActual = caja.ArmaFinal; // Eliminarlo de su posición original
+        //caja.ArmaFinal = seleccionado; // Insertarlo al inicio
+
+        // Mostrar la lista modificada
+        
+
+        for (int i = caja.ArmaFinal; i > 0; i--)
+        {
+            armas[i] = armas[i - 1];
+
+
+        }
+        armas[0] = armas[caja.ArmaFinal];
 
 
     }

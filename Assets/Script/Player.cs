@@ -32,10 +32,17 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform pies;
     private Vector3 movimientoVertical;
     [SerializeField] private LayerMask groundCheck;
+
+    [Header("ArmasM")]
+
+    [SerializeField] private ArmaManual armaManual;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
+        //armaManual = GetComponentInChildren<ArmaManual>();
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -142,5 +149,15 @@ public class Player : MonoBehaviour
 
          }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("municionMax"))
+        {
+            armaManual.PillarMunicion();
+
+        }
+    }
+
+
+
 }

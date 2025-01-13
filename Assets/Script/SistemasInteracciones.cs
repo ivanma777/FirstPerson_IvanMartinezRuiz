@@ -20,7 +20,9 @@ public class SistemasInteracciones : MonoBehaviour
     {
         DeteccionCaja();
         
+        
     }
+
 
     private void Interactuar()
     {
@@ -51,8 +53,29 @@ public class SistemasInteracciones : MonoBehaviour
                 { 
                 
                     scriptCaja.AbrirCaja();
+
+
+                    
                 
                 }
+                
+            }
+            else if (hitInfo.transform.TryGetComponent(out Bebidas scriptBebida))
+            {
+                interactuableActual = scriptBebida.transform;
+                scriptBebida.transform.GetComponent<Outline>().enabled = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+
+                    scriptBebida.Tomar();
+
+
+
+
+                }
+
+
+
             }
 
         }
@@ -63,4 +86,5 @@ public class SistemasInteracciones : MonoBehaviour
             interactuableActual = null;
         }
     }
+    
 }

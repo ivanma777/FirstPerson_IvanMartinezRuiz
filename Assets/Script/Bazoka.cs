@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Bazoka : MonoBehaviour
@@ -7,26 +8,176 @@ public class Bazoka : MonoBehaviour
     [SerializeField] private GameObject granadaPrefab;
     [SerializeField] private Transform spawnPoint;
 
+    [Header("arma")]
+    private Camera cam;
+    
+    [SerializeField] private ArmaSO misDatos;
 
+    private int balasActuales;
+    private int balasBolsaActuales;
+
+    private bool puedoRecargar;
+    private bool recargando = true;
+    private bool quedaMunicion = true;
+
+    private bool getAmmoIn;
+
+    private float timer;
+
+    [Header("texto")]
+
+    [SerializeField] private TMP_Text textoBalas;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        cam = Camera.main;
 
 
+        balasActuales = misDatos.balasCargador;
+        balasBolsaActuales = misDatos.balasBolsa;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if(Input.GetMouseButtonDown(0))
+        textoBalas.text = balasActuales.ToString() + "/" + balasBolsaActuales.ToString();
+
+        timer += Time.deltaTime;
+
+        if (Input.GetMouseButton(0) && timer >= misDatos.cadenciaAtaque && !getAmmoIn)
         {
+
             Instantiate(granadaPrefab, spawnPoint.position, transform.rotation);
+
+
+            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitInfo, misDatos.distanciaAtaque))
+            {
+
+                //Debug.Log(hitInfo.transform.name);
+
+                if (hitInfo.transform.TryGetComponent(out ParteEnemigo scriptEnemigo))
+                {
+                    scriptEnemigo.RecibirDahno(misDatos.danhoAtaque);
+
+                }
+            }
+
+            Balas();
+            timer = 0;
+
+
+        }
+        Recarga();
+    }
+
+    private void Balas()
+    {
+        balasActuales -= 1;
+    }
+
+    private void Recarga()
+    {
+        if (balasActuales >= 31)
+        {
+            puedoRecargar = false;
+
+        }
+
+        else if (balasActuales <= 0)
+        {
+            getAmmoIn = true;
+
+
+        }
+        else if (balasActuales <= 30)
+        {
+            puedoRecargar = true;
+
+        }
+
+        if (Input.GetMouseButtonDown(0) && getAmmoIn || Input.GetKeyDown(KeyCode.R) && puedoRecargar)
+        {
+
+            if (puedoRecargar && recargando && quedaMunicion)
+            {
+                recargando = false;
+                getAmmoIn = true;
+                //balasActuales = misDatos.balasCargador;
+
+                StartCoroutine(DelayedAction());
+
+            }
 
         }
 
 
     }
+    private IEnumerator DelayedAction()
+    {
+        Debug.Log("Inicio Recarga");
+
+        // Esperar 2 segundos antes de la siguiente acción
+        yield return new WaitForSeconds(2f);
+
+        Debug.Log("Fin Recarga");
+        reload();
+
+        //balasBolsaActuales -= misDatos.balasCargador - balasActuales;
+        //balasActuales = misDatos.balasCargador;
+
+    }
+    private void OnEnable()
+    {
+        textoBalas.enabled = true;
+    }
+    private void OnDisable()
+    {
+        textoBalas.enabled = false;
+    }
+
+    private void hayBalasEnLaBolsa()
+    {
+        if (balasBolsaActuales <= 0)
+        {
+            quedaMunicion = false;
+
+        }
+        else
+        {
+            quedaMunicion = true;
+
+        }
+
+    }
+
+    private void reload()
+
+    {
+        getAmmoIn = false;
+        recargando = true;
+
+        if (balasBolsaActuales > 0)
+        {
+            // Determinar cuántas balas se pueden recargar
+            int neededAmmo = misDatos.balasCargador - balasActuales;
+            int ammoToReload = Mathf.Min(neededAmmo, balasBolsaActuales);
+
+            // Recargar
+            balasActuales += ammoToReload;
+            balasBolsaActuales -= ammoToReload;
+
+            Debug.Log("Recargado! Balas actuales: " + balasActuales + ", Balas restantes: " + balasBolsaActuales);
+        }
+        else
+        {
+            Debug.Log("¡Sin balas restantes!");
+        }
+
+    }
+
+    
+
+    // Update is called once per frame
+    
 }

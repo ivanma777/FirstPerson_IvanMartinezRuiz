@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GunData
   m_EditorClassIdentifier: 
   balasCargador: 7
-  balasBolsa: 40
-  cadenciaAtaque: 1.5
+  balasBolsa: 64
+  cadenciaAtaque: 0.5
   distanciaAtaque: 500
-  danhoAtaque: 25
+  danhoAtaque: 10
